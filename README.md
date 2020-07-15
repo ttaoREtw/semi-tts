@@ -9,7 +9,7 @@ Semi-supervised Learning for Multi-speaker Text-to-speech Synthesis Using Discre
 Download VCTK and LJSpeech and put it into `data/audio-corpus`. Specifically, waves from LJSpeech should be in `data/audio-corpus/lj` and waves from speaker p225 of VCTK should be in `data/audio-corpus/p225`, etc..
 The data partition is specified in `data/partition_tables/<partition-table.csv>`.
 The phoneme transcription of each wave file is in `data/map_tables/lj_vctk_g2p.csv`.
->Note that for members in **NTU speech lab**, the audio-corpus could be download from `/groups/public/ttao/audio-corpus.zip`.
+>For members in **NTU speech lab**, the audio-corpus could be downloaded from `/groups/public/ttao/audio-corpus.zip`.
 
 #### Audio preprocessing
 The hyperparameter for audio features could be modified in `config/<config.yaml>`.
@@ -30,7 +30,7 @@ python main.py --config config/<config.yaml>\
                --load <checkpoint-path>
 ```
 The training log could be found in directory `log/`.
->Note that for members in **NTU speech lab**, the checkpoints could be download from `/groups/public/ttao/semi-tts-ckpt.zip`.
+>For members in **NTU speech lab**, the checkpoints could be downloaded from `/groups/public/ttao/semi-tts-ckpt.zip`.
 
 #### Inference
 ```sh
