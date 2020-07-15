@@ -47,12 +47,19 @@ python main.py --gen-specgram\
 
 ### Citation
 ```
-@misc{tu2020semisupervised,
-    title={Semi-supervised Learning for Multi-speaker Text-to-speech Synthesis Using Discrete Speech Representation},
-    author={Tao Tu and Yuan-Jui Chen and Alexander H. Liu and Hung-yi Lee},
-    year={2020},
-    eprint={2005.08024},
-    archivePrefix={arXiv},
-    primaryClass={eess.AS}
+@article{Liu2019TowardsUS,
+  title={Towards Unsupervised Speech Recognition and Synthesis with Quantized Speech Representation Learning},
+  author={Alexander H. Liu and Tao Tu and Hung-yi Lee and L. Lee},
+  journal={ArXiv},
+  year={2019},
+  volume={abs/1910.12729}
+}
+
+@article{Tu2020SemisupervisedLF,
+  title={Semi-supervised Learning for Multi-speaker Text-to-speech Synthesis Using Discrete Speech Representation},
+  author={Tao Tu and Yuan-Jui Chen and Alexander H. Liu and Hung-yi Lee},
+  journal={ArXiv},
+  year={2020},
+  volume={abs/2005.08024}
 }
 ```
