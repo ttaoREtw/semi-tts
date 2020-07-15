@@ -1,0 +1,97 @@
+data:
+  # Data setting, passed to dataloader
+  corpus:                               
+    name: 'vctk'                                  # Specify corpus
+    path: 'data/audio-corpus'                     # Path to specified corpus, structure should be unchanged  
+    bucketing: False                                   # Force audio length to be similar in each batch
+    batch_size: 8
+    spkr_map: 'corpus/spkr/lj_vctk.json'
+    partition_table: 'data/partition_tables/semi-single-spkr-sd0.csv'
+    map_table: 'data/map_tables/lj_vctk_g2p.csv'
+    vocab_file: 'data/cmu_phn.vocab'
+  audio:
+    num_freq: 1025
+    num_mels: 80
+    frame_length_ms: 50
+    frame_shift_ms: 12.5
+    preemphasis_coeff: 0.97
+    sample_rate: 22050
+    use_linear: True                      ### Return Linear spectrogram
+    # augmentation
+    snr_range: [10, 100]
+    time_stretch_range: [0.9, 1.1]
+
+hparas:                                   # Experiment hyper-parameters
+  valid_step: 5000
+  max_step: 1000000
+  asr_weight: 1.0
+  tts_weight: 1.0
+  unpair_text_start_step: 0
+  unpair_text_weight: 0.0
+  unpair_speech_start_step: 0
+  unpair_speech_weight: 10.0
+  optimizer: 'Adam'
+  lr: 0.001
+  lr_scheduler: 'decay'                   # 'fixed'/'warmup'/'decay'
+  freq_loss_type: 'mse'                         # 'l1'/'mse'
+  differential_loss: True
+  emphasize_linear_low: True
+  tf_start: 1.0
+  tf_end: 1.0
+  tf_step: 50000
+
+model:                                     # Model architecture
+  stop_threshold: 0.5
+  max_frames_per_phn: 3
+  txt_update_codebook: False
+  spkr_latent_dim: 128
+  encoder:
+      dim: 512                             # Dimension of each hidden layer
+      kernel:   [3,4,3,3,3,1]
+      stride:   [1,2,1,1,1,1]
+      residual: [0,0,1,1,1,1]
+      dropout: 0.5
+      activation: 'Tanh'
+      batch_norm: True
+      rnn_bid: True
+      rnn_layers: 2
+      rnn_dim: 256
+      layer_norm: False
+  codebook:
+      bone: 'l2'                     # 'ema'/'vq'/'feed_forward'
+      softmax: 'normal'
+      latent_dim: 64
+      commit_weight: 0
+      vq_weight: 0                      # vq_loss lambda for vq/ Decay for ema
+      temp: 1
+      skip_prob: 0
+      stop_grad: True #TODO: tune it 
+      phn_attr_pth: 'data/phn_attr.csv'
+      proj_attr: 16
+  decoder:
+    separate_postnet: True
+    encoder:
+      enc_n_conv: 3
+      enc_kernel_size: 5
+      enc_rnn_layer: 1
+      enc_embed_dim: 512
+      enc_dropout: 0.0
+    decoder:
+      n_frames_per_step: 3
+      prenet_dim: 256
+      prenet_dropout: 0.5  #TODO: tune it 0.5
+      query_rnn_dim: 1024
+      dec_rnn_dim: 1024
+      query_dropout: 0.1
+      dec_dropout: 0.1
+      attn_dim: 256
+      n_location_filters: 32
+      location_kernel_size: 31
+      loc_aware: True
+      use_summed_weights: True
+      drop_dec_in: 0.0
+
+  # Pretrained weight
+  #pretrained_asr: "result/pretrain_text_sd0/best_acc.pth"   # comment this line to disable pretrained model
+  #pretrained_emb: "result/pretrain_text_sd0/best_acc.pth"   # comment this line to disable pretrained model
+  #pretrained_tts: "result/pretrain_speech_normalized_feat/best_mel.pth" # comment this line to disable pretrained model
