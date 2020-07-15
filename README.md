@@ -25,12 +25,18 @@ python main.py --config config/<config.yaml> --njobs <num-workers>
 ```
 ### From a checkpoint
 ```sh
-python main.py --config config/<config.yaml> --njobs <num-workers> --load <checkpoint-path>
+python main.py --config config/<config.yaml>\
+               --njobs <num-workers>\
+               --load <checkpoint-path>
 ```
 The training log could be found in directory `log/`.
 >Note that for members in **NTU speech lab**, the checkpoints could be download from `/groups/public/ttao/semi-tts-ckpt.zip`.
 
 ## Inference
 ```sh
-python main.py --config config/<config.yaml> --njobs <num-workers> --gen-specgram
+python main.py --gen-specgram\
+               --config config/<config.yaml>\
+               --njobs <num-workers>\
+               --load <checkpoint-path>\
+               --logdir <output-directory>
 ```
