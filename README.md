@@ -1,4 +1,4 @@
-## semi-tts
+## Semi-supervised TTS
 Semi-supervised Learning for Multi-speaker Text-to-speech Synthesis Using Discrete Speech Representation
 <p align="center">
   <img src="illustration.png">
