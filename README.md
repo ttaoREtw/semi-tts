@@ -42,7 +42,8 @@ python main.py --gen-specgram\
 ```
 
 ### Reference
-* Nvidia Tacotron-2: https://github.com/NVIDIA/tacotron2
+* Grapheme-to-phoneme tool: https://github.com/Kyubyong/g2p
+* Tacotron-2: https://github.com/NVIDIA/tacotron2
 * End-to-end ASR: https://github.com/Alexander-H-Liu/End-to-end-ASR-Pytorch
 
 ### Citation
